@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Tmds.DBus;
 
 [assembly: InternalsVisibleTo(Tmds.DBus.Connection.DynamicAssemblyName)]
-namespace SecretsTest.Generated
+namespace SecretsTest.Standard
 {
     [DBusInterface("org.freedesktop.Secret.Service")]
     interface IService : IDBusObject

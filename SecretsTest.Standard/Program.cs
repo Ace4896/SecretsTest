@@ -1,7 +1,6 @@
-﻿using SecretsTest.Generated;
-using Tmds.DBus;
+﻿using Tmds.DBus;
 
-namespace SecretsTest;
+namespace SecretsTest.Standard;
 
 public sealed class Program
 {
@@ -24,6 +23,10 @@ public sealed class Program
         
         Console.WriteLine("Retrieved default collection");
 
+        // Retrieving individual properties works correctly
+        Console.WriteLine();
+        Console.WriteLine("Retrieving individual properties...");
+
         var locked = await defaultCollection.GetAsync<bool>("Locked");
         var label = await defaultCollection.GetAsync<string>("Label");
         var created = await defaultCollection.GetAsync<ulong>("Created");
@@ -34,11 +37,20 @@ public sealed class Program
         Console.WriteLine($"Created: {created}");
         Console.WriteLine($"Modified: {modified}");
 
+        // Retrieving all properties seems to be broken?
+        Console.WriteLine();
+        Console.WriteLine("Retrieving all properties...");
+
+        var properties = await defaultCollection.GetAllAsync();
+
+        Console.WriteLine($"Locked? {properties.Locked}");
+        Console.WriteLine($"Label: {properties.Label}");
+        Console.WriteLine($"Created: {properties.Created}");
+        Console.WriteLine($"Modified: {properties.Modified}");
+
+        Console.WriteLine();
         Console.WriteLine("Closing session...");
         await session.CloseAsync();
         Console.WriteLine("Closed session");
-
-        Console.WriteLine("Finished; press any key to exit");
-        Console.ReadKey();
     }
 }
