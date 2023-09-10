@@ -20,7 +20,7 @@ Modified: 1694360288
 Total Items: 4
 ```
 
-Regular Tmds seems to be working when retrieving individual properties, but is broken when retrieving all properties at once:
+Regular Tmds seems to be working when retrieving individual properties, but is broken when retrieving all properties at once (results in uninitialized values):
 
 ```
 $ dotnet run --project SecretsTest.Standard/
