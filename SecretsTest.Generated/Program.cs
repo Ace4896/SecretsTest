@@ -35,11 +35,13 @@ public sealed class Program
         // var label = await defaultCollection.GetLabelPropertyAsync();
         var created = await defaultCollection.GetCreatedPropertyAsync();
         var modified = await defaultCollection.GetModifiedPropertyAsync();
+        // var items = await defaultCollection.GetItemsPropertyAsync();
 
         Console.WriteLine($"Locked? {locked}");
         // Console.WriteLine($"Label: {label}");
         Console.WriteLine($"Created: {created}");
         Console.WriteLine($"Modified: {modified}");
+        // Console.WriteLine($"Total Items: {items.Length}");
 
         // Everything is read correctly when retrieving all properties at once
         Console.WriteLine();
@@ -51,6 +53,7 @@ public sealed class Program
         Console.WriteLine($"Label: {properties.Label}");
         Console.WriteLine($"Created: {properties.Created}");
         Console.WriteLine($"Modified: {properties.Modified}");
+        Console.WriteLine($"Total Items: {properties.Items.Length}");
 
         Console.WriteLine();
         Console.WriteLine("Closing session...");

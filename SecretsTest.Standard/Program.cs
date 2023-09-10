@@ -27,15 +27,17 @@ public sealed class Program
         Console.WriteLine();
         Console.WriteLine("Retrieving individual properties...");
 
-        var locked = await defaultCollection.GetAsync<bool>("Locked");
-        var label = await defaultCollection.GetAsync<string>("Label");
-        var created = await defaultCollection.GetAsync<ulong>("Created");
-        var modified = await defaultCollection.GetAsync<ulong>("Modified");
+        var locked = await defaultCollection.GetLockedAsync();
+        var label = await defaultCollection.GetLabelAsync();
+        var created = await defaultCollection.GetCreatedAsync();
+        var modified = await defaultCollection.GetModifiedAsync();
+        var items = await defaultCollection.GetItemsAsync();
 
         Console.WriteLine($"Locked? {locked}");
         Console.WriteLine($"Label: {label}");
         Console.WriteLine($"Created: {created}");
         Console.WriteLine($"Modified: {modified}");
+        Console.WriteLine($"Total Items: {items.Length}");
 
         // Retrieving all properties seems to be broken?
         Console.WriteLine();
@@ -47,6 +49,7 @@ public sealed class Program
         Console.WriteLine($"Label: {properties.Label}");
         Console.WriteLine($"Created: {properties.Created}");
         Console.WriteLine($"Modified: {properties.Modified}");
+        // Console.WriteLine($"Total Items: {properties.Items.Length}");    // Null reference exception
 
         Console.WriteLine();
         Console.WriteLine("Closing session...");
